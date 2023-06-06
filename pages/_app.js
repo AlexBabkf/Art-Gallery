@@ -1,3 +1,4 @@
+import Navigation from "Components/Navigation";
 import GlobalStyle from "../styles";
 import useSWR, { SWRConfig } from "swr";
 
@@ -17,6 +18,7 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
 
       <Component {...pageProps} pieces={data} />
+      <Navigation />
     </>
   );
 }
