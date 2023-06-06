@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Spotlight({ pieces }) {
   let randNum = Math.floor(Math.random() * pieces.length);
@@ -15,6 +16,7 @@ export default function Spotlight({ pieces }) {
         height={300}
       />
       <h3>By {randomPiece.artist}</h3>
+      <Link href={`/art-pieces/${randomPiece.slug}`}>See Details</Link>
     </div>
   );
 }
