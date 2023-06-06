@@ -1,9 +1,9 @@
-import ArtPieces from "Components/ArtPieces/index.js";
+import Spotlight from "Components/Spotlight/index.js";
 
 export default function HomePage(props) {
   return (
     <div>
-      <ArtPieces {...props} />
+      <Spotlight {...props} />
     </div>
   );
 }
