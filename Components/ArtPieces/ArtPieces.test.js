@@ -35,6 +35,7 @@ test("each piece's image is displayed", () => {
   });
 });
 
+
 test("each piece's title is displayed", () => {
   render(<ArtPieces pieces={mockPieces} />);
   mockPieces.forEach((piece) => {
