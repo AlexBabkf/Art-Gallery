@@ -5,6 +5,7 @@ export default function DetailedPage({
   pieces,
   onToggleFavorite,
   artPiecesInfo,
+  onSubmitComment,
 }) {
   const router = useRouter();
   const slug = router.query.slug;
@@ -15,6 +16,7 @@ export default function DetailedPage({
       {...piece}
       onToggleFavorite={onToggleFavorite}
       artPiecesInfo={artPiecesInfo}
+      onSubmitComment={onSubmitComment}
     />
   );
 }

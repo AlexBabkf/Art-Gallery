@@ -32,6 +32,22 @@ export default function App({ Component, pageProps }) {
     });
   }
 
+  function onSubmitComment(slug, comment) {
+    setArtPiecesInfo((artPiecesInfo) => {
+      const piece = artPiecesInfo.find((piece) => piece.slug === slug);
+      if (piece) {
+        // All comments except the first were added twice every time, with the includes this is prevented
+        // but now if someone wanted to make exactly the same comment that would not be possible
+
+        if (!piece.comments.includes(comment)) {
+          piece.comments.push(comment);
+        }
+        return [...artPiecesInfo];
+      }
+      return [...artPiecesInfo, { slug, comments: [comment] }];
+    });
+  }
+  console.log(artPiecesInfo);
   return (
     <>
       <GlobalStyle />
@@ -41,6 +57,7 @@ export default function App({ Component, pageProps }) {
         pieces={data}
         onToggleFavorite={onToggleFavorite}
         artPiecesInfo={artPiecesInfo}
+        onSubmitComment={onSubmitComment}
       />
       <Navigation />
     </>
