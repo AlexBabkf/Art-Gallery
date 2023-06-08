@@ -6,5 +6,10 @@ export default function favorites({ pieces, artPiecesInfo, onToggleFavorite }) {
       (favPiece) => favPiece.isFavorite && favPiece.slug === piece.slug
     )
   );
-  return <ArtPieces pieces={favorites} onToggleFavorite={onToggleFavorite} />;
+  return (
+    <div>
+      <h1>Favorite Art Pieces</h1>
+      <ArtPieces pieces={favorites} onToggleFavorite={onToggleFavorite} />
+    </div>
+  );
 }
