@@ -1,5 +1,6 @@
 import Image from "next/image";
 import FavoriteButton from "Components/FavoriteButton";
+import CommentForm from "Components/CommentForm";
 
 export default function ArtPieceDetails({
   imageSource,
@@ -10,7 +11,13 @@ export default function ArtPieceDetails({
   genre,
   onToggleFavorite,
   artPiecesInfo,
+  onSubmitComment,
 }) {
+  const piece = artPiecesInfo.find((piece) => piece.slug === slug) ?? {
+    comments: ["No comments yet"],
+  };
+  const date = `Added on: ${new Date()}`;
+
   return (
     <div>
       <Image src={imageSource} alt={slug} width={400} height={300} />
@@ -25,6 +32,14 @@ export default function ArtPieceDetails({
           artPiecesInfo={artPiecesInfo}
         />
       </ul>
+      <h3>Comments</h3>
+      {piece.comments.map((comment, index) => (
+        <li key={index}>
+          <p>{comment}</p>
+          <h6>{date}</h6>
+        </li>
+      ))}
+      <CommentForm slug={slug} onSubmitComment={onSubmitComment} />
     </div>
   );
 }
