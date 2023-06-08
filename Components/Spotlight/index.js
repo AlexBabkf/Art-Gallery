@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import FavoriteButton from "Components/FavoriteButton";
 
-export default function Spotlight({ pieces }) {
+export default function Spotlight({ pieces, artPiecesInfo, onToggleFavorite }) {
   let randNum = Math.floor(Math.random() * pieces.length);
   const randomPiece = pieces[randNum];
 
@@ -16,6 +17,11 @@ export default function Spotlight({ pieces }) {
         height={300}
       />
       <h3>By {randomPiece.artist}</h3>
+      <FavoriteButton
+        slug={randomPiece.slug}
+        onToggleFavorite={onToggleFavorite}
+        artPiecesInfo={artPiecesInfo}
+      />
       <Link href={`/art-pieces/${randomPiece.slug}`}>See Details</Link>
     </div>
   );

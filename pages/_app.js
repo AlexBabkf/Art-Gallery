@@ -1,6 +1,7 @@
 import Navigation from "Components/Navigation";
 import GlobalStyle from "../styles";
-import useSWR, { SWRConfig } from "swr";
+import useSWR from "swr";
+import { useState } from "react";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -10,14 +11,37 @@ export default function App({ Component, pageProps }) {
     fetcher
   );
 
+  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+
   if (error) return <div>Error...</div>;
   if (isLoading) return <div>Loading data...</div>;
+
+  function onToggleFavorite(slug) {
+    setArtPiecesInfo((artPiecesInfo) => {
+      const piece = artPiecesInfo.find((piece) => piece.slug === slug);
+
+      if (piece) {
+        return artPiecesInfo.map((piece) => {
+          return piece.slug === slug
+            ? { ...piece, isFavorite: !piece.isFavorite }
+            : piece;
+        });
+      }
+
+      return [...artPiecesInfo, { slug, isFavorite: true }];
+    });
+  }
 
   return (
     <>
       <GlobalStyle />
 
-      <Component {...pageProps} pieces={data} />
+      <Component
+        {...pageProps}
+        pieces={data}
+        onToggleFavorite={onToggleFavorite}
+        artPiecesInfo={artPiecesInfo}
+      />
       <Navigation />
     </>
   );

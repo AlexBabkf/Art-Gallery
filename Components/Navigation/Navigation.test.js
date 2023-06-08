@@ -12,3 +12,9 @@ test("There is a link labeled Art Pieces that directs to the Art Pieces page", (
   const link = screen.getByRole("link", { name: "Art Pieces" });
   expect(link).toHaveAttribute("href", "/art-pieces");
 });
+
+test("There is a link labeled Favorites that directs to the Favorites page", () => {
+  render(<Navigation />);
+  const link = screen.getByRole("link", { name: "Favorites" });
+  expect(link).toHaveAttribute("href", "/favorites");
+});
