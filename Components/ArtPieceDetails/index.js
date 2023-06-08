@@ -1,4 +1,5 @@
 import Image from "next/image";
+import FavoriteButton from "Components/FavoriteButton";
 
 export default function ArtPieceDetails({
   imageSource,
@@ -7,6 +8,8 @@ export default function ArtPieceDetails({
   artist,
   year,
   genre,
+  onToggleFavorite,
+  artPiecesInfo,
 }) {
   return (
     <div>
@@ -16,6 +19,11 @@ export default function ArtPieceDetails({
         <li>Artist: {artist}</li>
         <li>Year: {year}</li>
         <li>Genre: {genre}</li>
+        <FavoriteButton
+          slug={slug}
+          onToggleFavorite={onToggleFavorite}
+          artPiecesInfo={artPiecesInfo}
+        />
       </ul>
     </div>
   );

@@ -1,10 +1,20 @@
 import ArtPieceDetails from "Components/ArtPieceDetails";
 import { useRouter } from "next/router";
 
-export default function DetailedPage({ pieces }) {
+export default function DetailedPage({
+  pieces,
+  onToggleFavorite,
+  artPiecesInfo,
+}) {
   const router = useRouter();
   const slug = router.query.slug;
   const piece = pieces.find((piece) => piece.slug === slug);
 
-  return <ArtPieceDetails {...piece} />;
+  return (
+    <ArtPieceDetails
+      {...piece}
+      onToggleFavorite={onToggleFavorite}
+      artPiecesInfo={artPiecesInfo}
+    />
+  );
 }
